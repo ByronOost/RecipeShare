@@ -57,33 +57,6 @@ This section details the architecture and implementation of the RecipeShare proj
 
 ---
 
-### Architecture Diagram
-
-```
-graph TD
-    subgraph Client
-        A[Web Browser] --> B[Recipe List Page (RecipeList.cshtml)]
-        B -- AJAX Filter --> C[RecipeList.js]
-    end
-
-    subgraph Backend (ASP.NET Core)
-        C -- HTTP Requests --> D[REST API Controllers]
-        D --> E[Services/Business Logic]
-        E --> F[Repositories]
-        F -- Database Operations --> G[SQL Server Database]
-    end
-
-    subgraph Testing
-        H[xUnit Tests] --> I[Moq (for Repositories)]
-        I --> J[FluentAssertions]
-        H --> D
-    end
-
-    B -- Renders Partial View --> K[_RecipeList.cshtml]
-    D -- Standardized ApiResponse --> B
-    F -- OperationResult --> E
-```
-
 ### Benchmark stopwatch results
 
 500 sequential GET requests to `/api/recipes` in Release mode.
