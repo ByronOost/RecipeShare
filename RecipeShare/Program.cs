@@ -21,6 +21,11 @@ try
         client.BaseAddress = new Uri(baseAddress);
     });
 
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        options.ListenAnyIP(7069);
+    });
+
     // Add controllers with views (API + MVC) + JSON options to ignore cycles
     builder.Services.AddControllersWithViews()
         .AddJsonOptions(options =>
@@ -66,6 +71,15 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+    }
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Error");
     }
 
     app.UseHttpsRedirection();
