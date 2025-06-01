@@ -59,7 +59,7 @@ This section details the architecture and implementation of the RecipeShare proj
 
 ### Architecture Diagram
 
-```mermaid
+```
 graph TD
     subgraph Client
         A[Web Browser] --> B[Recipe List Page (RecipeList.cshtml)]
