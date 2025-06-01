@@ -16,9 +16,6 @@ This project uses **Docker Compose** to orchestrate both the ASP.NET Core applic
 ### Steps to Run
 
 1.  **Clone the repository:**
-    ```bash
-    # Replace with your actual clone command, e.g., git clone [https://github.com/your-username/RecipeShare.git](https://github.com/your-username/RecipeShare.git)
-    ```
 
 2.  **Start the containers:**
     Navigate to the root of the project (where `docker-compose.yml` is located) and run:
