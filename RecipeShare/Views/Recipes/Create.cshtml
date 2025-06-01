@@ -1,0 +1,59 @@
+﻿@using RecipeShare.ViewModels
+@model RecipeCreateViewModel
+@{
+    ViewData["Title"] = "Create Recipe";
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/custom/shared/select2.js"></script>
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Create New Recipe</h2>
+
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <form asp-controller="Recipes" asp-action="Create" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="CookingTime" class="form-label"></label>
+                <input asp-for="CookingTime" class="form-control" type="number" />
+                <span asp-validation-for="CookingTime" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DietaryTags" class="form-label"></label>
+            <select asp-for="DietaryTags" asp-items="@Model.DietaryTagsList" class="form-select select2" multiple></select>
+            <span asp-validation-for="DietaryTags" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Ingredients" class="form-label"></label>
+            <textarea asp-for="Ingredients" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Ingredients" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Steps" class="form-label"></label>
+            <textarea asp-for="Steps" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Steps" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Image" class="form-label"></label>
+            <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+    </form>
+</div>

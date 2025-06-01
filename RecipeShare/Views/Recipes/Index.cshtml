@@ -1,0 +1,47 @@
+﻿@using RecipeShare.ViewModels
+
+@model RecipeIndexViewModel
+@{
+    ViewData["Title"] = "All Recipes";
+}
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/custom/recipes/recipe-delete.js" ></script>
+<script src="~/js/custom/recipes/recipe-search.js" ></script>
+}
+
+<div class="row mb-3">
+    <div class="col-6">
+        <h2>All Recipes</h2>
+    </div>
+    <div class="col-6 d-flex justify-content-end align-items-center">
+        <a class=" btn btn-primary" asp-controller="Recipes" asp-action="Create">
+            Create
+        </a>
+    </div>
+</div>
+
+@if (Model.DietaryTagsList != null && Model.DietaryTagsList.Any())
+{
+    <div class="row mb-3">
+        <div class="col-12 col-lg-8">
+            <input type="text" id="searchTerm" class="form-control" placeholder="Search..." />
+        </div>
+        <div class="col-12 col-lg-4">
+            <select id="dietaryTag" class="form-select">
+                <option value="">All Tags</option>
+                @foreach (var tag in Model.DietaryTagsList)
+                {
+                    <option value="@tag.Value">@tag.Text</option>
+                }
+            </select>
+        </div>
+    </div>
+}
+
+
+<div id="recipeResults">
+    @await Html.PartialAsync("~/Views/Recipes/_Partials/IndexData.cshtml", Model)
+</div>
+
+@await Html.PartialAsync("_Partials/DeleteModal")

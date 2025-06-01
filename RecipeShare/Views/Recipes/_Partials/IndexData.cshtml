@@ -1,0 +1,44 @@
+﻿@using RecipeShare.ViewModels
+
+@model RecipeIndexViewModel
+
+@if (Model.Recipes != null && Model.Recipes.Any())
+{
+    <div class="row">
+        @foreach (var recipe in Model.Recipes)
+        {
+            <div class="col-12 col-lg-3 mb-4 d-flex">
+                <div class="card fixed-card-height w-100 d-flex flex-column">
+                    <div class="card-header">
+                        @recipe.Title
+                    </div>
+                    <div class="card-body flex-grow-1 d-flex justify-content-start align-items-stretch p-0" style="height:180px;">
+                        @if (!string.IsNullOrEmpty(recipe.ImageUrl))
+                        {
+                            <img src="@recipe.ImageUrl" alt="Recipe Image" class="recipe-card-image" />
+                        }
+                        else
+                        {
+                            <p class="text-muted">No image available</p>
+                        }
+                    </div>
+                    <div class="card-footer d-flex justify-content-end">
+                        <a class="me-2" asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.ID">
+                            <i class="text-success fa-solid fa-eye"></i>
+                        </a>
+                        <a class="me-2" asp-controller="Recipes" asp-action="Edit" asp-route-id="@recipe.ID">
+                            <i class="text-info fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a href="#" class="me-2 text-danger delete-btn" data-recipe-id="@recipe.ID">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>There are no recipes, try expanding your search</p>
+}

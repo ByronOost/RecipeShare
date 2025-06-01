@@ -1,0 +1,56 @@
+﻿@using RecipeShare.ViewModels
+@model RecipeDetailsViewModel
+@{
+    ViewData["Title"] = "Recipe Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">@Model.Title</h2>
+
+    <div class="row mb-4">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <div class="col-md-6">
+                <label class="form-label">Image</label>
+                <div class="recipe-image-container">
+                    <img src="@Model.ImageUrl" alt="Recipe Image" class="img-fluid rounded border" />
+                </div>
+            </div>
+        }
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Cooking Time (minutes)</label>
+                <div class="form-control bg-light">@Model.CookingTime</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dietary Tags</label>
+                <div class="form-control bg-light">
+                    @if (Model.DietaryTags != null && Model.DietaryTags.Any())
+                    {
+                        @foreach (var tag in Model.DietaryTags)
+                        {
+                            <span class="badge bg-secondary me-1">@tag</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>No Dietary Tags</span>
+                    }
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ingredients</label>
+                <div class="form-control bg-light" style="white-space: pre-wrap;">@Model.Ingredients</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <label class="form-label">Steps</label>
+            <div class="form-control bg-light" style="white-space: pre-wrap;">@Model.Steps</div>
+        </div>
+    </div>
+
+    <a asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+</div>

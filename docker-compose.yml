@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+    sql-server-db:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        container_name: recipe-share-sql-server-db
+        restart: always
+        volumes:
+            - ./Databases/sql-server:/var/opt/mssql/data
+        environment:
+            - SA_PASSWORD=S3cur3P@ssW0rd!
+            - ACCEPT_EULA=Y
+        ports:
+            - "10000:1433"
+        networks:
+            - recipe-share-network
+
+networks:
+    recipe-share-network:
+        external: true
