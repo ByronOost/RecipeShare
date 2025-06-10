@@ -76,3 +76,8 @@ BenchmarkDotNet summary:
 
 - **Search and Filter**  
   Dynamic search and filtering functionality to improve data navigation and user experience.
+
+
+## Walkthrough video link 
+
+https://www.loom.com/share/4eb8ef636111471e8d62fa61c5f8b4e9?sid=2ef52f11-5aec-403f-953c-902bdc06dddb
